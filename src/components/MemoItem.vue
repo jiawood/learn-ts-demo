@@ -26,9 +26,18 @@
 import {Component, Prop, Vue} from 'vue-property-decorator'
 import ItemData from '../model/ItemData'
 
+@Component
 export default class MemoItem extends Vue{
-  @Prop() memo !: ItemData
+  @Prop() memo!: ItemData
 
+  doDel():void {
+    if(!confirm(`确认要删除<${this.memo.title}>的笔记吗`)) return
+    this.$store.state.aHelper.remove(this.memo.id)
+  }
+  showEdit():void {
+    let newMemo = JSON.parse(JSON.stringify(this.memo))
+    this.$store.commit("showEditMemo", newMemo)
+  }
 }
 
 </script>

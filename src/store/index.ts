@@ -9,8 +9,15 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     aHelper:new ActionHelper(),
+    isShow:false,
+    transMemo:null,
+    filterCateId:-1
   },
   mutations: {
+    showEditMemo(state: any, editMemo: any){
+      this.transMemo = editMemo
+      state.isShow = true
+    }
   },
   actions: {
   },
